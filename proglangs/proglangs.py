@@ -1,6 +1,8 @@
 from html.parser import HTMLParser
 from urllib.request import urlopen
 
+WIKIPEDIA_URL = 'https://en.wikipedia.org/wiki/List_of_programming_languages'
+
 
 class ProgLangParser(HTMLParser):
     def __init__(self):
@@ -36,6 +38,6 @@ class ProgLangParser(HTMLParser):
             self.current_data = self.current_data + data
 
     def _getHTML(self):
-        response = urlopen('https://en.wikipedia.org/wiki/List_of_programming_languages')
+        response = urlopen(WIKIPEDIA_URL)
         data = response.read()
         return data.decode('utf-8')
