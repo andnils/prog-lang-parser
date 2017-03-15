@@ -1,12 +1,18 @@
-from html.parser import HTMLParser
-from urllib.request import urlopen
+try:
+    from html.parser import HTMLParser
+except ImportError:
+    from HTMLParser import HTMLParser
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib import urlopen
 
 WIKIPEDIA_URL = 'https://en.wikipedia.org/wiki/List_of_programming_languages'
 
 
 class ProgLangParser(HTMLParser):
     def __init__(self):
-        super().__init__()
+        HTMLParser.__init__(self)
         self.inside_interesting_part = False
         self.inside_li_tag = False
         self.current_data = ''
